@@ -24,6 +24,7 @@
     "gulp-bower": "0.0.10",
     "gulp-cached": "^1.0.2",
     "gulp-concat": "^2.5.0",
+    "gulp-html2js": "^0.2.0",
     "gulp-jshint": "^1.9.2",
     "gulp-livereload": "^3.7.0",
     "gulp-rename": "^1.2.0",

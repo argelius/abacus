@@ -6,11 +6,18 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     bower = require('gulp-bower'),
     livereload = require('gulp-livereload'),
-    webserver = require('gulp-webserver');
+    webserver = require('gulp-webserver'),
+    html2js = require('gulp-html2js'),
+    path = require('path');
+
+var templates = [
+  'src/templates/*.html'
+]
 
 var sourceFiles = [
+  'src/templates/*.js',
   'src/abacus.js', 
-  'src/services/*.js', 
+  'src/services/*.js',
   'src/directives/*.js'
 ];
 
@@ -21,7 +28,14 @@ var examples = [
 
 var port = 3002;
 
-gulp.task('concat', function() {
+gulp.task('templates', function() {
+  gulp.src(templates)
+    .pipe(html2js({base: path.join(__dirname, '/src'), outputModuleName: 'abacus.templates', useStrict: true, quoteChar: '\''}))
+    .pipe(concat('templates.js'))
+    .pipe(gulp.dest('src/templates'));
+});
+
+gulp.task('concat', ['templates'], function() {
   gulp.src(sourceFiles)
     .pipe(sourcemaps.init())
     .pipe(concat('abacus.js'))
@@ -29,7 +43,7 @@ gulp.task('concat', function() {
     .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('minify', function() {
+gulp.task('minify', ['templates'], function() {
   gulp.src(sourceFiles)
     .pipe(sourcemaps.init())
     .pipe(concat('abacus.min.js'))
@@ -46,10 +60,10 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('bower', function() {
-  return bower();
+  bower();
 });
 
-gulp.task('build', ['concat', 'minify', 'jshint']);
+gulp.task('build', ['jshint', 'concat', 'minify']);
 
 gulp.task('watch', ['bower', 'build'], function() {
   gulp.src(__dirname)
@@ -59,7 +73,7 @@ gulp.task('watch', ['bower', 'build'], function() {
       open: true
     }));
 
-  gulp.watch(sourceFiles.concat(examples), ['build']);
+  gulp.watch(sourceFiles.concat(examples).concat(templates), ['build']);
 });
 
 
