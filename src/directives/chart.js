@@ -7,7 +7,11 @@
     return {
       restrict: 'E',
       templateUrl: 'templates/chart.html',
-      transclude: true
+      transclude: true,
+      scope: {
+        width: '=',
+        height: '='
+      }
     };
   }]);
 })();

@@ -66,6 +66,7 @@ gulp.task('bower', function() {
 gulp.task('build', ['jshint', 'concat', 'minify']);
 
 gulp.task('watch', ['bower', 'build'], function() {
+  gulp.watch(sourceFiles.concat(examples).concat(templates), ['build']);
   gulp.src(__dirname)
     .pipe(webserver({
       livereload: true,
@@ -73,7 +74,6 @@ gulp.task('watch', ['bower', 'build'], function() {
       open: true
     }));
 
-  gulp.watch(sourceFiles.concat(examples).concat(templates), ['build']);
 });
 
 

@@ -7,12 +7,18 @@
     <script src="../dist/abacus.min.js"></script>
   </head>
   <script>
-    angular.module('myApp', ['abacus']);
+    angular.module('myApp', ['abacus'])
+
+    .controller('TestController', function($scope) {
+        $scope.values = [1341, 12, 251, 1531, 1235];
+    });
   </script>
-  <body>
+  <body ng-controller="TestController">
     <h1>Abacus</h1>
 
-    <abc-pie-chart>
+    <abc-pie-chart data="values">
     </abc-pie-chart>
+
+    <input type="number" ng-model="value" ng-repeat="value in values"></input>
   </body>
 </html>
