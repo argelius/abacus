@@ -28,11 +28,13 @@ catch(err) { module = angular.module('abacus.templates', []); }
 module.run(['$templateCache', function($templateCache) {
   'use strict';
   $templateCache.put('templates/pieChart.html',
-    '<abc-chart width="width" height="height">\n' +
-    '  <g stroke="black" ng-repeat="segment in getAngles()">\n' +
-    '  </g>\n' +
-    '</abc-chart>\n' +
+    '<svg width="200" height="200">\n' +
+    '  <g>\n' +
+    '    <g ng-repeat="piece in pieces">\n' +
     '\n' +
+    '    </g>\n' +
+    '  </g>\n' +
+    '</svg>\n' +
     '');
 }]);
 })();

@@ -19,6 +19,8 @@
     <abc-pie-chart data="values">
     </abc-pie-chart>
 
-    <input type="number" ng-model="value" ng-repeat="value in values"></input>
+    <div ng-repeat="value in values">
+      <input type="number" ng-model="values[$index]"></input>
+    </div>
   </body>
 </html>

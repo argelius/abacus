@@ -5,8 +5,7 @@ var gulp = require('gulp'),
     cached = require('gulp-cached'),
     jshint = require('gulp-jshint'),
     bower = require('gulp-bower'),
-    livereload = require('gulp-livereload'),
-    webserver = require('gulp-webserver'),
+    connect = require('gulp-connect'),
     html2js = require('gulp-html2js'),
     path = require('path');
 
@@ -65,15 +64,15 @@ gulp.task('bower', function() {
 
 gulp.task('build', ['jshint', 'concat', 'minify']);
 
-gulp.task('watch', ['bower', 'build'], function() {
-  gulp.watch(sourceFiles.concat(examples).concat(templates), ['build']);
-  gulp.src(__dirname)
-    .pipe(webserver({
-      livereload: true,
-      directoryListing: true,
-      open: true
-    }));
+gulp.task('listen', function() {
+  connect.server({
+    root: __dirname,
+    livereload: true
+  });
+});
 
+gulp.task('watch', ['bower', 'build', 'listen'], function() {
+  gulp.watch(['src/**/*.js', 'src/*.js'], ['build']);
 });
 
 
