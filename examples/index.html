@@ -9,17 +9,23 @@
   <script>
     angular.module('myApp', ['abacus'])
 
-    .controller('TestController', function($scope) {
-        $scope.values = [1341, 12, 251, 1531, 1235];
+    .controller('TestController', function($scope, $interval) {
+        $scope.values = [1, 1, 1, 1, 1];
+
+        $interval(function() {
+          var index = Math.floor(Math.random() * $scope.values.length);
+
+          $scope.values[index]++;
+        }, 100);
     });
   </script>
   <body ng-controller="TestController">
     <h1>Abacus</h1>
 
-    <abc-pie-chart data="values">
+    <abc-pie-chart size="200" data="values">
     </abc-pie-chart>
 
-    <div ng-repeat="value in values">
+    <div ng-repeat="value in values track by $index">
       <input type="number" ng-model="values[$index]"></input>
     </div>
   </body>

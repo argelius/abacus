@@ -72,7 +72,7 @@ gulp.task('listen', function() {
 });
 
 gulp.task('watch', ['bower', 'build', 'listen'], function() {
-  gulp.watch(['src/**/*.js', 'src/*.js'], ['build']);
+  gulp.watch(sourceFiles.concat(templates), ['build']);
 });
 
 
