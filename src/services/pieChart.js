@@ -17,7 +17,6 @@
       this.scope.radius = this.getRadius();
       this.scope.angles = this.calculateAngles();
       this.scope.colors = $abacus.getColors(this.scope.sectors.length);
-      console.log(this.scope.colors);
     };
 
     /**
@@ -92,7 +91,6 @@
           this.angleToCartesian(angles[i])
         ];
       }
-      console.log(sectors);
 
       return sectors;
     };
