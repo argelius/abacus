@@ -10,13 +10,7 @@
     angular.module('myApp', ['abacus'])
 
     .controller('TestController', function($scope, $interval) {
-        $scope.values = [1, 1, 1, 1, 1];
-
-        $interval(function() {
-          var index = Math.floor(Math.random() * $scope.values.length);
-
-          $scope.values[index]++;
-        }, 100);
+        $scope.values = [100, 100, 100, 100, 100];
     });
   </script>
   <body ng-controller="TestController">
