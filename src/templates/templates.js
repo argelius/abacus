@@ -16,7 +16,7 @@ module.run(['$templateCache', function($templateCache) {
   $templateCache.put('templates/pieChart.html',
     '<svg ng-attr-width="{{ size }}" ng-attr-height="{{ size }}">\n' +
     '  <g>\n' +
-    '    <g \n' +
+    '    <g\n' +
     '      ng-attr-stroke="{{ colors[$index] }}"\n' +
     '      ng-attr-fill="{{ colors[$index] }}"\n' +
     '      ng-repeat="sector in sectors">\n' +

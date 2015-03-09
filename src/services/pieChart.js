@@ -25,7 +25,7 @@
     PieChart.prototype.getValues = function() {
       return this.scope.data;
     };
-    
+
     PieChart.prototype.getSize = function() {
       return this.scope.size;
     };
