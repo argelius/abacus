@@ -3,24 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>title</title>
-    <script src="../bower_components/angular/angular.min.js"></script>
     <script src="../dist/abacus.min.js"></script>
   </head>
-  <script>
-    angular.module('myApp', ['abacus'])
-
-    .controller('TestController', function($scope, $interval) {
-        $scope.values = [100, 100, 100, 100, 100];
-    });
-  </script>
-  <body ng-controller="TestController">
-    <h1>Abacus</h1>
-
-    <abc-pie-chart size="200" data="values">
-    </abc-pie-chart>
-
-    <div ng-repeat="value in values track by $index">
-      <input type="number" ng-model="values[$index]"></input>
-    </div>
+  <body>
+    <abc-chart style="width: 300px; height: 200px" type="bar">
+      <abc-data label="A" value="234"></abc-data>
+      <abc-data label="D" value="43"></abc-data>
+      <abc-data label="E" value="827"></abc-data>
+      <abc-data label="F" value="324"></abc-data>
+    </abc-chart>
+  </div>
   </body>
 </html>
